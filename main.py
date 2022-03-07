@@ -9,4 +9,3 @@ while True:
 
     va.check(text=text)
 
-
