@@ -12,8 +12,11 @@ from colors import COLOR
 
 hello = ["hello", "greetings", "bonjour", "hi", "hey", "howdy"]  # all the ways to greet someone
 morning = ["morning", "a.m.", "early", "sunrise"]
-rain = ["rain", "raining", "rainfall", "precipitation", "raindrops", "rainstorm", "hurricane", "thunder", "storm", "rainwater", "rainy", "flood", "flooding", "hail", "pouring", "umbrella"]
+rain = ["rain", "raining", "rainfall", "precipitation", "raindrops", "rainstorm", "hurricane", "thunder", "storm",
+        "rainwater", "rainy", "flood", "flooding", "hail", "pouring", "umbrella"]
 snow = ["winter", "snow", "snowing", "snowflakes", "snowball", "snowman", "santa"]
+
+
 # make a method that checks the input text. Return a string of the audio file back. Use playsound to play the sound.
 
 def get_audio():
@@ -25,7 +28,8 @@ def get_audio():
         try:
             said = r.recognize_google(audio)
         except Exception as e:
-            print(COLOR.RED + "*Qiqi could not hear you*")  # maybe get rid of it because I'm not really going to talk all the time
+            print(
+                COLOR.RED + "*Qiqi could not hear you*")  # maybe get rid of it because I'm not really going to talk all the time
 
     return said
 
@@ -33,7 +37,8 @@ def get_audio():
 # check the text that would play the right audio back
 def check(text):
     # have a way to shut her up, maybe make a method for both shut up and un-shut up
-    talk = False # if she said something, then i don't have to make her say nani-ka
+    talk = False  # if she said something, then i don't have to make her say nani-ka
+    dont_say_again = []
 
     if "chichi" in text:  # you have to say her name
         text_array = text.split()
@@ -43,23 +48,38 @@ def check(text):
 
             if word in hello:  # change this later so get an array of greetings
                 talk = True
-                print(COLOR.RED + "Qiqi, I'm a jiangshi. Hm...? What else...")
-                playsound("audio/hello.mp3")
+                if not repeat_condition(dont_say_again, word): # check if the word was repeated. False means it was not repeated
+                    dont_say_again.append(word)
+                    print(COLOR.RED + "Qiqi, I'm a jiangshi. Hm...? What else...")
+                    playsound("audio/hello.mp3")
             if word in morning:
                 talk = True
-                print(COLOR.RED + "It's morning already? What should I... I'll check my notes.")
-                playsound("audio/good_morning.mp3")
+                if not repeat_condition(dont_say_again, word):
+                    dont_say_again.append(word)
+                    print(COLOR.RED + "It's morning already? What should I... I'll check my notes.")
+                    playsound("audio/good_morning.mp3")
             if word in rain:
                 talk = True
-                print(COLOR.RED + "Forgot an umbrella again.")
-                playsound("audio/rain.mp3")
+                if not repeat_condition(dont_say_again, word):
+                    dont_say_again.append(word)
+                    print(COLOR.RED + "Forgot an umbrella again.")
+                    playsound("audio/rain.mp3")
             if word in snow:
                 talk = True
-                print(COLOR.RED + "Wanna build a snowman... Can you help?")
-                playsound("audio/snow.mp3")
+                if not repeat_condition(dont_say_again, word):
+                    dont_say_again.append(word)
+                    print(COLOR.RED + "Wanna build a snowman... Can you help?")
+                    playsound("audio/snow.mp3")
 
         if not talk:  # did not say anything
             print(COLOR.RED + "What?")
             playsound("audio/nani_ka.mp3")
 
-# a problem i found. If you say the same word 3 times. she will tell the same thing 3 times. Probably need a counter so she doesn't repeat the same sentence over and over again
+# a problem i found. If you say the same word 3 times. she will tell the same thing 3 times. Probably need a counter
+# so she doesn't repeat the same sentence over and over again
+
+def repeat_condition(array, word):
+    if word in array:
+        return True
+    else:
+        return False
