@@ -5,15 +5,17 @@ from playsound import playsound
 import speech_recognition as sr
 from gtts import gTTS
 from colors import COLOR
+import numpy
 
 # initialize a global array of strings. Such as greetings. Takes in all the "hello", "hi", "how are you", "howdy",
 
 # all possible words to trigger a response
 
 hello = ["hello", "greetings", "bonjour", "hi", "hey", "howdy"]  # all the ways to greet someone
-chat_talking_to_herself = []  # i might need to figure out a phrase instead of using one word
-chat_afraid_of_heat = []
-chat_training = []
+chat_afraid_of_heat = ["hot", "burning", "blazing", "flaming", "fire", "scorching", "fiery"]
+
+chat_training = ["count", "counting"]
+# stopped here ^^^^^
 when_it_rains = ["rain", "raining", "rainfall", "precipitation", "raindrops", "rainstorm", "hurricane", "thunder",
                  "storm", "rainwater", "rainy", "flood", "flooding", "hail", "pouring", "umbrella"]
 when_the_sun_is_out = []
@@ -50,10 +52,8 @@ birthday = []
 feelings_about_ascension_building_up = []
 feelings_about_ascension_climax = []
 
-
-# Only ascension phase 2 and 4 makes sense. The ogg files is labeled 2 and 3.
-
-# sun is out, afraid of heat
+# phrases that are need to activate this
+chat_talking_to_herself = []  # i might need to figure out a phrase instead of using one word
 
 
 # make a method that checks the input text. Return a string of the audio file back. Use playsound to play the sound.
@@ -73,29 +73,56 @@ def get_audio():
     return said
 
 
-def respond(text):  # I need a new fking method
+# global class
+class Reset:
+    def __init__(self, num):
+        self.size_num = num
+        self.stop = numpy.zeros(1, dtype=bool)
+
+    def create(self):
+        self.stop = numpy.zeros(self.size_num, dtype=bool)
+
+    def restart(self):
+        self.stop = numpy.zeros(self.size_num, dtype=bool)
+
+
+# repeat_condition = Reset(3)
+
+
+def respond(text, repeat_condition):  # I need a new fking method
+    repeat_condition.create()
+    # print(repeat_condition.size_num)
+    # print(repeat_condition.stop[0])
     understand = False
-    stop = [False, False]  # don't repeat
+
     text_array = text.split()
 
     if "chichi" not in text_array:
         return
 
-    for word in text_array:
-        if check_array(word) and stop[0] == False:
+    for word in text_array:  # one for each word
+        if check_array(word, repeat_condition=repeat_condition):
             understand = True
-            stop[0] = True
+
+    # make a for loop for specific phrases!!!! important
 
     if not understand:
         print(COLOR.RED + "What's going on?")
         playsound("audio\english\more_about_qiqi_friendship\VO_Qiqi_More_About_Qiqi_-_01.mp3")
 
+    repeat_condition.restart()  # back to false
 
-def check_array(text):
-    if text in hello:
+
+def check_array(text, repeat_condition):
+    if text in hello and repeat_condition.stop[0] == False:
         print(COLOR.RED + "I am Qiqi. I am a zombie. And I forgot what comes next.")
         playsound("audio\english\VO_Qiqi_Hello.mp3")
+        repeat_condition.stop[0] = True
         return True
+    if text in chat_afraid_of_heat and repeat_condition.stop[1] == False:
+        print(COLOR.RED + "Let's go somewhere cooler.")
+        playsound("audio\english\VO_Qiqi_Chat_-_Afraid_of_Heat.mp3")
+        repeat_condition.stop[1] = True
 
 
 def check_good_day_array(text):
