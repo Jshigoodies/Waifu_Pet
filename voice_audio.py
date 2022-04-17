@@ -1,9 +1,6 @@
-import os
-import time
 import playsound
 from playsound import playsound
 import speech_recognition as sr
-from gtts import gTTS
 from colors import COLOR
 import numpy
 
@@ -15,15 +12,15 @@ hello = ["hello", "greetings", "bonjour", "hi", "hey", "howdy"]  # all the ways 
 chat_afraid_of_heat = ["hot", "burning", "blazing", "flaming", "fire", "scorching", "fiery"]
 
 chat_training = ["count", "counting"]
-# stopped here ^^^^^
 when_it_rains = ["rain", "raining", "rainfall", "precipitation", "raindrops", "rainstorm", "hurricane", "thunder",
                  "storm", "rainwater", "rainy", "flood", "flooding", "hail", "pouring", "umbrella"]
-when_the_sun_is_out = []
-when_its_windy = []
+when_the_sun_is_out = ["sun", "sunny", "bright", "outside", "outdoors", "outdoor"]
+when_its_windy = ["wind"]
 when_the_wind_is_blowing = ["blowing", "windy"]  # when the wind is blowing
-when_it_snows = ["winter", "snow", "snowing", "snowflakes", "snowball", "snowman", "santa"]
+when_it_snows = ["winter", "snow", "snowing", "snowflakes", "snowball", "snowman", "santa", "snowy"]
 good_morning = ["morning", "a.m.", "early", "sunrise"]
 good_afternoon = ["afternoon"]  # ADD THIS #ADD THIS
+# where i am ^^^
 good_evening = ["evening"]  # ADD THIS #ADD THIS
 good_night = []
 about_qiqi = []
@@ -53,7 +50,8 @@ feelings_about_ascension_building_up = []
 feelings_about_ascension_climax = []
 
 # phrases that are need to activate this
-chat_talking_to_herself = []  # i might need to figure out a phrase instead of using one word
+chat_talking_to_herself = ["do you know what"]  # i might need to figure out a phrase instead of using one word
+# i can try string.find("do you know what")
 
 
 # make a method that checks the input text. Return a string of the audio file back. Use playsound to play the sound.
@@ -96,15 +94,16 @@ def respond(text, repeat_condition):  # I need a new fking method
     understand = False
 
     text_array = text.split()
-
+    print(text_array)
     if "chichi" not in text_array:
+        # print("i am here") # weird bug
         return
 
     for word in text_array:  # one for each word
         if check_array(word, repeat_condition=repeat_condition):
             understand = True
 
-    # make a for loop for specific phrases!!!! important
+    # make a for loop for specific phrases or if statments. Whichever works !!!! important
 
     if not understand:
         print(COLOR.RED + "What's going on?")
@@ -114,16 +113,44 @@ def respond(text, repeat_condition):  # I need a new fking method
 
 
 def check_array(text, repeat_condition):
+    # print(text)
     if text in hello and repeat_condition.stop[0] == False:
+        repeat_condition.stop[0] = True
         print(COLOR.RED + "I am Qiqi. I am a zombie. And I forgot what comes next.")
         playsound("audio\english\VO_Qiqi_Hello.mp3")
-        repeat_condition.stop[0] = True
-        return True
-    if text in chat_afraid_of_heat and repeat_condition.stop[1] == False:
+    elif text in chat_afraid_of_heat and repeat_condition.stop[1] == False:
+        repeat_condition.stop[1] = True
         print(COLOR.RED + "Let's go somewhere cooler.")
         playsound("audio\english\VO_Qiqi_Chat_-_Afraid_of_Heat.mp3")
-        repeat_condition.stop[1] = True
+    elif text in chat_training and repeat_condition.stop[2] == False:
+        repeat_condition.stop[2] = True
+        print(COLOR.RED + "One, two, three, four. Two, two, three, four...")
+        playsound("audio\english\VO_Qiqi_Chat_-_Training.mp3")
+    elif text in when_it_rains and repeat_condition.stop[3] == False:
+        repeat_condition.stop[3] = True
+        print(COLOR.RED + "I forgot my umbrella again.")
+        playsound("audio\english\VO_Qiqi_When_It_Rains.mp3")
+    elif text in when_the_sun_is_out and repeat_condition.stop[4] == False:
+        repeat_condition.stop[4] = True
+        print(COLOR.RED + "I should have stayed indoors today.")
+        playsound("audio\english\VO_Qiqi_When_the_Sun_Is_Out.mp3")
+    elif text in when_its_windy and repeat_condition.stop[5] == False:
+        repeat_condition.stop[5] = True
+        print(COLOR.RED + "The wind is... frigid. I like it.")
+        playsound("audio\english\VO_Qiqi_When_It's_Windy.mp3")
+    elif text in when_the_wind_is_blowing and repeat_condition.stop[6] == False:
+        repeat_condition.stop[6] = True
+        print(COLOR.RED + "Hold my hand please. This wind could blow me away.")
+        playsound("audio\english\VO_Qiqi_When_the_Wind_Is_Blowing.mp3")
+    elif text in when_it_snows and repeat_condition.stop[7] == False:
+        repeat_condition.stop[7] = True
+        print(COLOR.RED + "I want to build a snowman. Will you help?")
+        playsound("audio\english\VO_Qiqi_When_It_Snows.mp3")
+    elif text in good_morning and repeat_condition.stop[8] == False:
+        repeat_condition.stop[8] = True
+        print(COLOR.RED + "Morning means it's time to check my diary. Because my diary reminds me what I'm supposed to do in the morning.")
+        playsound("audio\english\VO_Qiqi_Good_Morning.mp3")
+    else:
+        return False
 
-
-def check_good_day_array(text):
-    pass
+    return True
