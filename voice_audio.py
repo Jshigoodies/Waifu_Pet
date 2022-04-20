@@ -3,6 +3,7 @@ from playsound import playsound
 import speech_recognition as sr
 from colors import COLOR
 import numpy
+import random
 
 # initialize a global array of strings. Such as greetings. Takes in all the "hello", "hi", "how are you", "howdy",
 
@@ -16,15 +17,15 @@ when_it_rains = ["rain", "raining", "rainfall", "precipitation", "raindrops", "r
                  "storm", "rainwater", "rainy", "flood", "flooding", "hail", "pouring", "umbrella"]
 when_the_sun_is_out = ["sun", "sunny", "bright", "outside", "outdoors", "outdoor"]
 when_its_windy = ["wind"]
-when_the_wind_is_blowing = ["blowing", "windy"]  # when the wind is blowing
+when_the_wind_is_blowing = ["blowing", "windy"]
 when_it_snows = ["winter", "snow", "snowing", "snowflakes", "snowball", "snowman", "santa", "snowy"]
 good_morning = ["morning", "a.m.", "early", "sunrise"]
-good_afternoon = ["afternoon"]  # ADD THIS #ADD THIS
+good_afternoon = ["afternoon"]
+good_evening = ["evening"]
+good_night = ["sleep", "tired", "sleepy", "nap", "snooze", "slumber", "bed", "stress", "stressed"]
+about_qiqi = [] # don't really need this
+about_us_memory = ["memory", "memorizing", "remember", "remind", "forgot", "forget"]
 # where i am ^^^
-good_evening = ["evening"]  # ADD THIS #ADD THIS
-good_night = []
-about_qiqi = []
-about_us_memory = []
 about_us_memory_of_training = []
 about_the_vision = []
 something_to_share = []
@@ -95,13 +96,19 @@ def respond(text, repeat_condition):  # I need a new fking method
 
     text_array = text.split()
     print(text_array)
+
     if "chichi" not in text_array:
         # print("i am here") # weird bug
         return
 
-    for word in text_array:  # one for each word
-        if check_array(word, repeat_condition=repeat_condition):
-            understand = True
+    if random.choice([1, 1, 1, 1, 1, 1, 0, 0]) == 1:
+        for word in text_array:  # one for each word
+            if check_array(word, repeat_condition=repeat_condition):
+                understand = True
+    else:
+        print(COLOR.RED + "Did you ask me something? Sorry... I forgot.")
+        playsound("audio\english\VO_Qiqi_About_Qiqi.mp3")
+        return
 
     # make a for loop for specific phrases or if statments. Whichever works !!!! important
 
@@ -114,6 +121,7 @@ def respond(text, repeat_condition):  # I need a new fking method
 
 def check_array(text, repeat_condition):
     # print(text)
+
     if text in hello and repeat_condition.stop[0] == False:
         repeat_condition.stop[0] = True
         print(COLOR.RED + "I am Qiqi. I am a zombie. And I forgot what comes next.")
@@ -150,7 +158,21 @@ def check_array(text, repeat_condition):
         repeat_condition.stop[8] = True
         print(COLOR.RED + "Morning means it's time to check my diary. Because my diary reminds me what I'm supposed to do in the morning.")
         playsound("audio\english\VO_Qiqi_Good_Morning.mp3")
+    elif text in good_afternoon and repeat_condition.stop[9] == False:
+        repeat_condition.stop[9] = True
+        print(COLOR.RED + "I just remembered something. I forgot to help Dr. Baizhu prepare medications.")
+        playsound("audio\english\VO_Qiqi_Good_Afternoon.mp3")
+    elif text in good_evening and repeat_condition.stop[10] == False:
+        repeat_condition.stop[10] = True
+        print(COLOR.RED + "Good evening. How was your day? My day was fine, I think. But I can't remember.")
+        playsound("audio\english\VO_Qiqi_Good_Evening.mp3")
+    elif text in good_night and repeat_condition.stop[11] == False:
+        repeat_condition.stop[11] = True
+        print(COLOR.RED + "It's time for you to sleep now. I will do my stretches. ...Do not watch me please.")
+        playsound("audio\english\VO_Qiqi_Good_Night.mp3")
+    elif text in about_us_memory and repeat_condition.stop[12] == False:
+        print(COLOR.RED + "I have a poor memory for most things. But as far as I know, that doesn't matter.")
+        playsound("audio\english\VO_Qiqi_About_Us_-_Memory.mp3")
     else:
         return False
-
     return True
