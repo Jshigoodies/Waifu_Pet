@@ -24,16 +24,16 @@ good_afternoon = ["afternoon"]
 good_evening = ["evening"]
 good_night = ["sleep", "tired", "sleepy", "nap", "snooze", "slumber", "bed", "stress", "stressed"]
 about_qiqi = [] # don't really need this
-about_us_memory = ["memory", "memorizing", "remember", "remind", "forgot", "forget"]
-# where i am ^^^
-about_us_memory_of_training = []
-about_the_vision = []
-something_to_share = []
-interesting_things = []
-about_baizhu = []
-about_hutao = []
-about_xiao_name = []
-about_xiao_memory = []
+about_us_memory = ["memory", "memorizing", "remember", "remind", "forgot", "forget", "remembered", "memorized", "memorize"]
+about_us_memory_of_training = ["memory", "memorizing", "remember", "remind", "forgot", "forget", "remembered", "memorized", "memorize"]
+about_the_vision = ["vision", "eyes", "eyeball", "sight", "eyesight", "view"]
+something_to_share = ["physical", "dead", "corpse", "health"]
+interesting_things = ["finches", "pharmacy"]
+about_baizhu = ["baizhu", "baijiu"]
+about_hutao = ["hutao", "hotel"]
+# where i am ^^^^^^^^^^^^
+about_xiao_name = ["xiao", "shell"]
+about_xiao_memory = ["xiao", "shell"]
 about_xinyan = []
 about_yaoyao = []
 about_dusky_ming = []
@@ -99,7 +99,8 @@ def respond(text, repeat_condition):  # I need a new fking method
 
     if "chichi" not in text_array:
         # print("i am here") # weird bug
-        return
+        if "qiqi" not in text_array:
+            return
 
     if random.choice([1, 1, 1, 1, 1, 1, 0, 0]) == 1:
         for word in text_array:  # one for each word
@@ -173,6 +174,24 @@ def check_array(text, repeat_condition):
     elif text in about_us_memory and repeat_condition.stop[12] == False:
         print(COLOR.RED + "I have a poor memory for most things. But as far as I know, that doesn't matter.")
         playsound("audio\english\VO_Qiqi_About_Us_-_Memory.mp3")
+    elif text in about_us_memory_of_training and repeat_condition.stop[13] == False:
+        print(COLOR.RED + "I started memory training exercises recently. So don't you worry, I won't forget who you are.")
+        playsound("audio\english\VO_Qiqi_About_Us_-_Memory_Training.mp3")
+    elif text in about_the_vision and repeat_condition.stop[14] == False:
+        print(COLOR.RED + "My Vision can't turn back time. But at least it gives me the power to protect the people that matter most.")
+        playsound("audio\english\VO_Qiqi_About_the_Vision.mp3")
+    elif text in something_to_share and repeat_condition.stop[15] == False:
+        print(COLOR.RED + "I may be a corpse, but I am in much better physical condition than Dr. Baizhu.")
+        playsound("audio\english\VO_Qiqi_Something_to_Share.mp3")
+    elif text in interesting_things and repeat_condition.stop[16] == False:
+        print(COLOR.RED + "Sometimes I see finches near the pharmacy. A nice little group of finches.")
+        playsound("audio\english\VO_Qiqi_Interesting_Things.mp3")
+    elif text in about_baizhu and repeat_condition.stop[17] == False:
+        print(COLOR.RED + "I can never remember Dr. Baizhu's face. But I don't mind.")
+        playsound("audio\english\VO_Qiqi_About_Baizhu.mp3")
+    elif text in about_hutao and repeat_condition.stop[18] == False:
+        print(COLOR.RED + "Warm. Fake smile. Death. I despise Hu Tao.")
+        playsound("audio\english\VO_Qiqi_About_Hu_Tao.mp3")
     else:
         return False
     return True
