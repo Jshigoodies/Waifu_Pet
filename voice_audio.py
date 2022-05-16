@@ -116,9 +116,11 @@ def respond(text, repeat_condition):  # I need a new fking method
     elif num == 3:
         print(COLOR.RED + "Hey, do you know what? Neither do I. I already forgot.")
         playsound("audio\english\VO_Qiqi_Chat_-_Talking_to_Herself.mp3")
+        return
     else:  # num == 4
         print(COLOR.RED + "Sorry, I have no idea.")
         playsound("audio\english\VO_Qiqi_Least_Favorite_Food.mp3")
+        return
 
     # make a for loop for specific phrases or if statments. Whichever works !!!! important
 
