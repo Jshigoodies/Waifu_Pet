@@ -102,10 +102,10 @@ audio_texts = ["I am Qiqi. I am a zombie. And I forgot what comes next.",
                "Some people want to take advantage of me. Others are terrified of me. But you... You are not like any of those people.",
                "Since we first met, I have had a warm feeling inside. Not the kind of warmth that makes me feel rotten and disgusting and closer to death. The other kind of warmth. The one that happens inside my heart. Thank you. I am happy. Sadly I only recognize the current you. If I forget you... No. I will order myself to remember you.",
                "In the past, my only thought was: I must stay alive. Even though I didn't know what to live for. But now, I think I know. I want to live with you. I want to ask, can we stay together, for the rest of life, until death? Yes or no? Yes? Is that your real answer? Good, excellent. I promise to always protect you.",
-               "I want to have a pet. For example, a nice little finch."
+               "I want to have a pet. For example, a nice little finch.",
                "I don't know why, but high temperatures make me feel rotten and disgusting. And closer to death.",
                "I like coconut milk... But, I don't know what it tastes like.",
-               "Many happy returns. Here is a bag of herbal medicine for you. You must be very surprised that I remembered? Let me explain. Last time you told me, I wrote your birthday down on a piece of paper. If I look at something once a day, it eventually goes into my long-term memory, and it will stay there forever."
+               "Many happy returns. Here is a bag of herbal medicine for you. You must be very surprised that I remembered? Let me explain. Last time you told me, I wrote your birthday down on a piece of paper. If I look at something once a day, it eventually goes into my long-term memory, and it will stay there forever.",
                "Ah, I understand. When I get stronger, I need to put more effort into controlling my strength.",
                "In the past, I did not understand the idea of becoming stronger than I already was. Now that I understand it well, I wish I was just a little stronger still."]
 

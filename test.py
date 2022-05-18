@@ -1,0 +1,40 @@
+audio_texts = ["I am Qiqi. I am a zombie. And I forgot what comes next.",
+               "Let's go somewhere cooler.",
+               "One, two, three, four. Two, two, three, four...",
+               "I forgot my umbrella again.",
+               "I should have stayed indoors today.",
+               "The wind is... frigid. I like it.",
+               "Hold my hand please. This wind could blow me away.",
+               "I want to build a snowman. Will you help?",
+               "Morning means it's time to check my diary. Because my diary reminds me what I'm supposed to do in the morning.",
+               "I just remembered something. I forgot to help Dr. Baizhu prepare medications.",
+               "Good evening. How was your day? My day was fine, I think. But I can't remember.",
+               "It's time for you to sleep now. I will do my stretches. ...Do not watch me please.",
+               "I have a poor memory for most things. But as far as I know, that doesn't matter.",
+               "I started memory training exercises recently. So don't you worry, I won't forget who you are.",
+               "My Vision can't turn back time. But at least it gives me the power to protect the people that matter most.",
+               "I may be a corpse, but I am in much better physical condition than Dr. Baizhu.",
+               "Sometimes I see finches near the pharmacy. A nice little group of finches.",
+               "I can never remember Dr. Baizhu's face. But I don't mind.",
+               "Warm. Fake smile. Death. I despise Hu Tao.",
+               "Sounds like a historical artifact to me.",
+               "Remind me, have I met him before?",
+               "Uh... who?",
+               "Cute. Like a nice little finch.",
+               "On some nights, I almost feel like someone is doing stretches together with me. But maybe I just have an overactive imagination.",
+               "I perform stretches regularly to help me maintain the same range of movement as a normal human being. But as soon as I stop doing them, the rigor mortis starts to set in again.",
+               "Some people want to take advantage of me. Others are terrified of me. But you... You are not like any of those people.",
+               "Since we first met, I have had a warm feeling inside. Not the kind of warmth that makes me feel rotten and disgusting and closer to death. The other kind of warmth. The one that happens inside my heart. Thank you. I am happy. Sadly I only recognize the current you. If I forget you... No. I will order myself to remember you.",
+               "In the past, my only thought was: I must stay alive. Even though I didn't know what to live for. But now, I think I know. I want to live with you. I want to ask, can we stay together, for the rest of life, until death? Yes or no? Yes? Is that your real answer? Good, excellent. I promise to always protect you.",
+               "I want to have a pet. For example, a nice little finch.",
+               "I don't know why, but high temperatures make me feel rotten and disgusting. And closer to death.",
+               "I like coconut milk... But, I don't know what it tastes like.",
+               "Many happy returns. Here is a bag of herbal medicine for you. You must be very surprised that I remembered? Let me explain. Last time you told me, I wrote your birthday down on a piece of paper. If I look at something once a day, it eventually goes into my long-term memory, and it will stay there forever.",
+               "Ah, I understand. When I get stronger, I need to put more effort into controlling my strength.",
+               "In the past, I did not understand the idea of becoming stronger than I already was. Now that I understand it well, I wish I was just a little stronger still."]
+
+print(len(audio_texts))
+num = 0
+for i in audio_texts:
+    print(str(num) + " " + i)
+    num = num + 1
